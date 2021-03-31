@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", function initialContent() {
 });
 
 function addUserAPI(name, mobileNumber, emailId) {
-  console.log("object");
-  fetch(`${API_BASE_URL}/addUser`, {
+  return fetch(`${API_BASE_URL}/addUser`, {
     method: "POST",
     body: JSON.stringify({
       name,
@@ -23,7 +22,7 @@ function addUserAPI(name, mobileNumber, emailId) {
     headers: {
       "Content-Type": "application/JSON",
     },
-  });
+  }).then((res) => res.json());
 }
 
 function deleteUserAPI(id) {
@@ -105,23 +104,29 @@ function clickHandler(e, nameParam, mobileParam, emailParam, id) {
       createTableCellNode(row, name);
       createTableCellNode(row, mobile);
       createTableCellNode(row, email);
-      createDeleteRowBtn(row, id);
+      if (e) {
+        addUserAPI(name, mobile, email).then((res) =>
+          createDeleteRowBtn(row, res.id)
+        );
+      }
 
       tableBody.appendChild(row);
 
       table.appendChild(tableBody);
       resultContainer.appendChild(table);
-      if (e) addUserAPI(name, mobile, email);
     } else {
       const row = document.createElement("tr");
       createTableCellNode(row, name);
       createTableCellNode(row, mobile);
       createTableCellNode(row, email);
-      createDeleteRowBtn(row, id);
+      if (e) {
+        addUserAPI(name, mobile, email).then((res) =>
+          createDeleteRowBtn(row, res.id)
+        );
+      }
 
       const prevTableBody = document.getElementsByTagName("tbody")[0];
       prevTableBody.appendChild(row);
-      if (e) addUserAPI(name, mobile, email);
     }
   }
 
