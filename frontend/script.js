@@ -1,7 +1,8 @@
 const form = document.getElementById("input-form");
+const API_BASE_URL = "http://localhost:8080";
 
 document.addEventListener("DOMContentLoaded", function initialContent() {
-  fetch("http://localhost:8080/")
+  fetch(API_BASE_URL)
     .then((res) => res.json())
     .then((res) => {
       res.forEach((ele) => {});
@@ -9,8 +10,7 @@ document.addEventListener("DOMContentLoaded", function initialContent() {
 });
 
 function addUserAPI(name, mobileNumber, emailId) {
-  console.log('object')
-  fetch("http://localhost:8080/addUser", {
+  fetch(`${API_BASE_URL}/addUser`, {
     method: "POST",
     body: JSON.stringify({
       name,
@@ -20,6 +20,12 @@ function addUserAPI(name, mobileNumber, emailId) {
     headers: {
       "Content-Type": "application/JSON",
     },
+  });
+}
+
+function deleteUserAPI(id) {
+  fetch(`${API_BASE_URL}/deleteUser/${id}`, {
+    method: "DELETE",
   });
 }
 
