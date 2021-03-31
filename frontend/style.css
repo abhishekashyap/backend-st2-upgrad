@@ -1,0 +1,99 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+button {
+  padding: 0.25rem;
+}
+
+label {
+  flex: 1;
+}
+
+/* Custom styles */
+#result {
+  overflow: auto;
+}
+
+.container {
+  height: 100vh;
+  background-color: #e2e1e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  width: 50%;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.title {
+  text-align: center;
+}
+
+.form {
+  margin: 2rem 0rem;
+}
+
+.line {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.input-field input {
+  padding: 0.25rem 0.5rem;
+  flex: 1;
+}
+
+.input-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary {
+  width: 50%;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 800px) {
+  .form-container {
+    width: 90%;
+  }
+}

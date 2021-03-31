@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini project</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h1 class="title">Details Form</h1>
+        <hr class="line" />
+        <form action="#" id="input-form" class="form">
+          <div class="input-field">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" minlength="3" required />
+          </div>
+          <div class="input-field">
+            <label for="mobile">Mob. No.:</label>
+            <input type="number" name="mobile" id="mobile" required />
+          </div>
+          <div class="input-field">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+          <div class="input-btn">
+            <input
+              type="submit"
+              value="SUBMIT"
+              id="submit-btn"
+              class="btn-primary"
+            />
+          </div>
+        </form>
+        <hr class="line" />
+        <div id="result"></div>
+      </div>
+    </div>
+  </body>
+</html>
