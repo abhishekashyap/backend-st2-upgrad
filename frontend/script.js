@@ -3,8 +3,25 @@ const form = document.getElementById("input-form");
 document.addEventListener("DOMContentLoaded", function initialContent() {
   fetch("http://localhost:8080/")
     .then((res) => res.json())
-    .then((res) => console.log(res));
+    .then((res) => {
+      res.forEach((ele) => {});
+    });
 });
+
+function addUserAPI(name, mobileNumber, emailId) {
+  console.log('object')
+  fetch("http://localhost:8080/addUser", {
+    method: "POST",
+    body: JSON.stringify({
+      name,
+      mobileNumber,
+      emailId,
+    }),
+    headers: {
+      "Content-Type": "application/JSON",
+    },
+  });
+}
 
 function validateEmail(email) {
   const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -82,6 +99,7 @@ form.addEventListener("submit", function clickHandler(e) {
 
       table.appendChild(tableBody);
       resultContainer.appendChild(table);
+      addUserAPI(name, mobile, email);
     } else {
       const row = document.createElement("tr");
       createTableCellNode(row, name);
@@ -91,6 +109,7 @@ form.addEventListener("submit", function clickHandler(e) {
 
       const prevTableBody = document.getElementsByTagName("tbody")[0];
       prevTableBody.appendChild(row);
+      addUserAPI(name, mobile, email);
     }
   }
 
