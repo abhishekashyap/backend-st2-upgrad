@@ -6,12 +6,13 @@ document.addEventListener("DOMContentLoaded", function initialContent() {
     .then((res) => res.json())
     .then((res) => {
       res.forEach((ele) => {
-        clickHandler(null, ele.name, ele.mobileNumber, ele.emailId);
+        clickHandler(null, ele.name, ele.mobileNumber, ele.emailId, ele.id);
       });
     });
 });
 
 function addUserAPI(name, mobileNumber, emailId) {
+  console.log("object");
   fetch(`${API_BASE_URL}/addUser`, {
     method: "POST",
     body: JSON.stringify({
@@ -51,7 +52,7 @@ function createTableCellNode(tableRow, value) {
   tableRow.appendChild(cell);
 }
 
-function deleteRow(row) {
+function deleteRow(row, id) {
   const i = row.parentNode.rowIndex;
   document.getElementsByTagName("table")[0].deleteRow(i);
 
@@ -61,19 +62,20 @@ function deleteRow(row) {
     const elements = document.getElementsByTagName("table");
     while (elements[0]) elements[0].parentNode.removeChild(elements[0]);
   }
+  deleteUserAPI(id);
 }
 
-function createDeleteRowBtn(tableRow) {
+function createDeleteRowBtn(tableRow, id) {
   const btn = document.createElement("button");
   const btnTextNode = document.createTextNode("Delete");
   btn.appendChild(btnTextNode);
-  btn.setAttribute("onclick", "deleteRow(this)");
+  btn.setAttribute("onclick", `deleteRow(this, ${id})`);
   tableRow.appendChild(btn);
 }
 
 form.addEventListener("submit", (e) => clickHandler(e));
 
-function clickHandler(e, nameParam, mobileParam, emailParam) {
+function clickHandler(e, nameParam, mobileParam, emailParam, id) {
   if (e) e.preventDefault();
   const name = document.getElementById("name").value || nameParam;
   const mobile = document.getElementById("mobile").value || mobileParam;
@@ -103,23 +105,23 @@ function clickHandler(e, nameParam, mobileParam, emailParam) {
       createTableCellNode(row, name);
       createTableCellNode(row, mobile);
       createTableCellNode(row, email);
-      createDeleteRowBtn(row);
+      createDeleteRowBtn(row, id);
 
       tableBody.appendChild(row);
 
       table.appendChild(tableBody);
       resultContainer.appendChild(table);
-      addUserAPI(name, mobile, email);
+      if (e) addUserAPI(name, mobile, email);
     } else {
       const row = document.createElement("tr");
       createTableCellNode(row, name);
       createTableCellNode(row, mobile);
       createTableCellNode(row, email);
-      createDeleteRowBtn(row);
+      createDeleteRowBtn(row, id);
 
       const prevTableBody = document.getElementsByTagName("tbody")[0];
       prevTableBody.appendChild(row);
-      addUserAPI(name, mobile, email);
+      if (e) addUserAPI(name, mobile, email);
     }
   }
 
