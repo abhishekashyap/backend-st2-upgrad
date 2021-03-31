@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", function initialContent() {
   fetch(API_BASE_URL)
     .then((res) => res.json())
     .then((res) => {
-      res.forEach((ele) => {});
+      res.forEach((ele) => {
+        clickHandler(null, ele.name, ele.mobileNumber, ele.emailId);
+      });
     });
 });
 
@@ -69,11 +71,13 @@ function createDeleteRowBtn(tableRow) {
   tableRow.appendChild(btn);
 }
 
-form.addEventListener("submit", function clickHandler(e) {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const mobile = document.getElementById("mobile").value;
-  const email = document.getElementById("email").value;
+form.addEventListener("submit", (e) => clickHandler(e));
+
+function clickHandler(e, nameParam, mobileParam, emailParam) {
+  if (e) e.preventDefault();
+  const name = document.getElementById("name").value || nameParam;
+  const mobile = document.getElementById("mobile").value || mobileParam;
+  const email = document.getElementById("email").value || emailParam;
 
   if (name.length < 3) {
     alert("Name should be of minimum 3 characters long");
@@ -120,4 +124,4 @@ form.addEventListener("submit", function clickHandler(e) {
   }
 
   form.reset();
-});
+}
