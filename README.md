@@ -13,4 +13,4 @@ Goto frontend folder
 cd frontend
 ```
 
-Open the `index.html` file and you can perform the operations on the file.
+Open the `index.html` file and you can perform the operations on the app.
